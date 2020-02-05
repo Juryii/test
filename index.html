@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<body>
+<div id="app" class="container">
+    <form @submit.prevent="editApply" v-if="edit" class="col-md-12 border">
+        <input type="text"
+               placeholder="Name"
+               v-model="name"
+        >
+        <input type="text"
+               placeholder="brewers_tips"
+               v-model="brewers_tips"
+        >
+        <input type="text"
+               placeholder="link img"
+               v-model="img"
+        >
+        <input type="text"
+               placeholder="description"
+               v-model="description"
+        >
+        <button>Submit</button>
+    </form>
+    <button @click="nextPage" v-if="showBtn">{{msgBtn}}</button>
+    <div class="beer col-12" v-for="beer, index in beers" >
+      <div class="row">
+        <span class="col-2">{{beer.id}}</span>
+        <p class="col-4">{{beer.name}}</p>
+        <button @click.prevent.self="edditPost(beer)" class="col-2">eddit</button>
+        <button @click.prevent="deletePost(beer)" class="col-2">delete</button>
+      </div>
+
+        
+        <p class="col-10">{{beer.brewers_tips}}</p>
+        <img :src="beer.image_url" class="col-2" alt="#">
+        <div class="description">{{beer.description}}</div>
+
+    </div>
+
+
+</div>
+<!--Порядковый номер
+name
+img
+description
+brewers_tips
+-->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
